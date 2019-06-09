@@ -4,16 +4,16 @@ services:
   db:
     container_name: db_server
     image: postgres
-    environment:
-      - POSTGRES_USER=skuit_user
-      - POSTGRES_PASSWORD=super_duper_password
-      - POSTGRES_DB=skuit_db
+    env_file:
+      - ./config/development.env
     networks:
       - main
   web:
     container_name: django_server
     build: .
-    command: python ./backend/manage.py runserver 0.0.0.0:8000
+    command: ["./scripts/start.sh"]
+    env_file:
+      - ./config/development.env
     volumes:
       - .:/code
     ports:

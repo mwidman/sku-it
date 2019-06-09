@@ -6,4 +6,6 @@ RUN mkdir /code/frontend
 WORKDIR /code
 COPY ./backend/requirements.txt /code/backend/
 RUN pip install -r ./backend/requirements.txt
-COPY . /code/
+COPY ./scripts /code/
+COPY ./backend /code/
+COPY ./frontend /code/
