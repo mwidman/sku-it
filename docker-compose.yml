@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  db:
+    container_name: db_server
+    image: postgres
+    environment:
+      - POSTGRES_USER=skuit_user
+      - POSTGRES_PASSWORD=super_duper_password
+      - POSTGRES_DB=skuit_db
+    networks:
+      - main
+  web:
+    container_name: django_server
+    build: .
+    command: python ./backend/manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    networks:
+      - main
+networks:
+  main:
