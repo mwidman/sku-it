@@ -4,14 +4,18 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SkuInComponent } from './components/sku-in/sku-in.component';
 import { SkuOutComponent } from './components/sku-out/sku-out.component';
 
+
+export const COMPONENTS = [
+  DashboardComponent,
+  SkuInComponent,
+  SkuOutComponent
+];
+
 @NgModule({
-  declarations: [
-    DashboardComponent,
-    SkuInComponent,
-    SkuOutComponent
-  ],
+  declarations: COMPONENTS,
   imports: [
     CommonModule
-  ]
+  ],
+  exports: COMPONENTS,
 })
 export class InventoryModule { }

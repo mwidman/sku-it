@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
 import { InventoryModule } from './inventory/inventory.module';
 
 @NgModule({
@@ -12,7 +12,7 @@ import { InventoryModule } from './inventory/inventory.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    InventoryModule
+    InventoryModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
