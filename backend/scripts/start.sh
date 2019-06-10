@@ -21,7 +21,7 @@ if [ "$PRODUCTION" == "true" ]; then
     # and mark them as applied without running them. (Django won’t check that the
     # table schema match your models, just that the right table names exist).
     echo "==> Django setup, executing: migrate"
-    python3 /code/backend/manage.py migrate --fake-initial
+    python3 /code/manage.py migrate --fake-initial
 
     # Django: collectstatic
     #
@@ -29,7 +29,7 @@ if [ "$PRODUCTION" == "true" ]; then
     # and the setting:
     # STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
     echo "==> Django setup, executing: collectstatic"
-    python3 /code/backend/manage.py collectstatic --noinput -v 3
+    python3 /code/manage.py collectstatic --noinput -v 3
 else
     # Django: reset database
     # https://docs.djangoproject.com/en/1.9/ref/django-admin/#flush
@@ -37,7 +37,7 @@ else
     # This will give some errors when there is no database to be flushed, but
     # you can ignore these messages.
     echo "==> Django setup, executing: flush"
-    python3 /code/backend/manage.py flush --noinput
+    python3 /code/manage.py flush --noinput
 
     # Django: migrate
     #
@@ -45,12 +45,12 @@ else
     # and mark them as applied without running them. (Django won’t check that the
     # table schema match your models, just that the right table names exist).
     echo "==> Django setup, executing: migrate"
-    python3 /code/backend/manage.py migrate --fake-initial
+    python3 /code/manage.py migrate --fake-initial
 
     # Django: collectstatic
     echo "==> Django setup, executing: collectstatic"
-    python3 /code/backend/manage.py collectstatic --noinput -v 3
+    python3 /code/manage.py collectstatic --noinput -v 3
 fi
 
 # Just for test, use built-in webserver for now:
-python3 /code/backend/manage.py runserver 0.0.0.0:8000
+python3 /code/manage.py runserver 0.0.0.0:8000
