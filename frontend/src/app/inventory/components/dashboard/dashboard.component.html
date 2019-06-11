@@ -11,14 +11,12 @@
         </p>
       </mat-card-content>
       <mat-card-actions>
-        <a mat-flat-button color=accent
-          [routerLink]="['/transaction']"
-          [queryParams]="{ txType: txType.PURCHASED }"
-          >Receive</a>
-        <a mat-flat-button color=accent
-          [routerLink]="['/transaction']"
-          [queryParams]="{ txType: txType.SOLD }"
-          >Ship</a>
+        <button mat-flat-button color=accent
+          (click)="openTransactionAdd(sku.id, txType.PURCHASED)"
+          >Receive</button>
+        <button mat-flat-button color=accent
+          (click)="openTransactionAdd(sku.id, txType.SOLD)"
+          >Ship</button>
       </mat-card-actions>
       <mat-card-footer></mat-card-footer>
     </mat-card>

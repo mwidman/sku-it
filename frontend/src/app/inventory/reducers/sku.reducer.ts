@@ -75,6 +75,12 @@ export function reducer(
         addError: action.payload
       };
     }
+    case SkuActions.SELECT_SKU: {
+      return {
+        ...state,
+        selectedSkuId: action.payload
+      };
+    }
     default: {
       return state;
     }

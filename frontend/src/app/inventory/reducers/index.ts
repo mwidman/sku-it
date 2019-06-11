@@ -30,3 +30,14 @@ export const {
   selectIds: getSkuIds,
   selectTotal: getTotalSkus,
 } = fromSku.adapter.getSelectors(getSkuEntitiesState);
+
+export const getSelectedSkuId = createSelector(
+  getSkuEntitiesState,
+  fromSku.getSelectedId,
+);
+
+export const getSelectedSku = createSelector(
+  getSkuEntities,
+  getSelectedSkuId,
+  (entities, id) => entities[id]
+);

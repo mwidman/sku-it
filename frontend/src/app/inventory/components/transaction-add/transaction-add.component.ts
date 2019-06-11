@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import * as fromInventory from '../../reducers';
@@ -33,6 +33,9 @@ export class TransactionAddComponent implements OnInit {
 
   ngOnInit() {
     this.txType = this.route.snapshot.queryParamMap.get("txType");
+    this.sku$ = this.store.pipe(
+      select(fromInventory.getSelectedSku)
+    );
   }
 
   onSubmit() {

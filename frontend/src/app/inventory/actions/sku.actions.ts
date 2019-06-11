@@ -9,6 +9,7 @@ export enum SkuActions {
   ADD_SKU = '[Skus] Add Sku',
   ADD_SKU_SUCCESS = '[Skus] Add Sku Success',
   ADD_SKU_FAILURE = '[Skus] Add Sku Failure',
+  SELECT_SKU = '[Skus] Select Sku',
 };
 
 export class FetchSkus implements Action {
@@ -47,9 +48,8 @@ export class AddSkuFailure implements Action {
   constructor(public payload: any) { }
 }
 
-
-export type SkuActionTypes
-  = FetchSkus
-  | FetchSkusSuccess
-  | FetchSkusFailure
-  ;
+export class SelectSku implements Action {
+  readonly type = SkuActions.SELECT_SKU;
+  
+  constructor(public payload: string) { }
+}
