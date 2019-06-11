@@ -8,7 +8,7 @@ export interface Transaction {
   sku_id: string;
   tx_type: TxType;
   quantity: number;
-  total_cost: number;
+  total_cost?: number;
   client: string;
   tx_date: Date;
 }

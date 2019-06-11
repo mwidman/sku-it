@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import * as fromInventory from '../../reducers';
 import { TxType } from '../../models/transaction';
 import { Sku } from '../../models/sku';
+import { AddTransaction } from '../../actions/transaction.actions';
 
 @Component({
   selector: 'app-transaction-add',
@@ -41,7 +42,7 @@ export class TransactionAddComponent implements OnInit {
     if(this.txForm.valid) {
       const transaction = this.txForm.value;
       console.warn(transaction);
-      //this.store.dispatch(new AddSku(transaction));
+      this.store.dispatch(new AddTransaction(transaction));
     }
   }
 

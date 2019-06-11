@@ -9,7 +9,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SkuAddComponent } from './components/sku-add/sku-add.component';
 import { TransactionAddComponent } from './components/transaction-add/transaction-add.component';
 import { reducers } from './reducers';
-import { SkuEffects } from './effects';
+import { SkuEffects, TransactionEffects } from './effects';
 import { MaterialModule } from '../material.module';
 
 export const COMPONENTS = [
@@ -23,7 +23,10 @@ export const COMPONENTS = [
   imports: [
     CommonModule,
     StoreModule.forFeature('inventory', reducers),
-    EffectsModule.forFeature([SkuEffects]),
+    EffectsModule.forFeature([
+      SkuEffects,
+      TransactionEffects
+    ]),
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
