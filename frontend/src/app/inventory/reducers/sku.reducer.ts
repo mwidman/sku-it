@@ -5,8 +5,10 @@ import { SkuActions } from '../actions/sku.actions';
 
 export interface SkuState extends EntityState<Sku> {
   selectedSkuId: string | null;
-  loading: boolean;
-  error: string;
+  fetching: boolean;
+  fetchError: string;
+  adding: boolean;
+  addError: string;
 }
 
 export const adapter: EntityAdapter<Sku> = createEntityAdapter<Sku>({
@@ -16,8 +18,10 @@ export const adapter: EntityAdapter<Sku> = createEntityAdapter<Sku>({
 
 export const initialState: SkuState = adapter.getInitialState({
   selectedSkuId: null,
-  loading: false,
-  error: '',
+  fetching: false,
+  fetchError: '',
+  adding: false,
+  addError: '',
 });
 
 
@@ -29,7 +33,8 @@ export function reducer(
     case SkuActions.FETCH_SKUS: {
       return {
         ...state,
-        loading: true
+        fetching: true,
+        fetchError: '',
       };
     }
     case SkuActions.FETCH_SKUS_SUCCESS: {
@@ -44,8 +49,30 @@ export function reducer(
     case SkuActions.FETCH_SKUS_FAILURE: {
       return {
         ...state,
-        loading: false,
-        error: action.payload
+        fetching: false,
+        fetchError: action.payload
+      };
+    }
+    case SkuActions.ADD_SKU: {
+      return {
+        ...state,
+        adding: true,
+        addError: '',
+      };
+    }
+    case SkuActions.ADD_SKU_SUCCESS: {
+      return adapter.addOne(
+        action.payload,
+        {
+          ...state,
+          adding: false,
+      });
+    }
+    case SkuActions.ADD_SKU_SUCCESS: {
+      return {
+        ...state,
+        adding: false,
+        addError: action.payload
       };
     }
     default: {

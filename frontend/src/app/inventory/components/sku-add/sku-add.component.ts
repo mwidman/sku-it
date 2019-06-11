@@ -28,7 +28,7 @@ export class SkuAddComponent implements OnInit {
     if(this.skuForm.valid) {
       const sku = this.skuForm.value;
       console.warn(sku);
-      //this.store.dispatch(new AddSku(sku));
+      this.store.dispatch(new AddSku(sku));
     }
   }
 

@@ -4,7 +4,12 @@ import { asyncScheduler, of, } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 import { Sku } from '../models/sku';
-import { SkuActions, FetchSkusSuccess } from '../actions/sku.actions';
+import { 
+  SkuActions,
+  FetchSkusSuccess,
+  AddSkuSuccess,
+  AddSku
+} from '../actions/sku.actions';
 
 @Injectable()
 export class SkuEffects {
@@ -28,5 +33,15 @@ export class SkuEffects {
       )
   )
 
+  addSku$ = createEffect(
+    () => ({ scheduler = asyncScheduler } = {}) =>
+      this.actions$.pipe(
+        ofType<AddSku>(SkuActions.ADD_SKU),
+        switchMap((action) => {
+          const sku = action.payload;
+          return of(new AddSkuSuccess(sku));
+          })
+      )
+  )
 
 }
