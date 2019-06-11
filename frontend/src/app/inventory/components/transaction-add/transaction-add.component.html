@@ -1,3 +1,23 @@
-<p>
-  Transaction Add works!
-</p>
+<a mat-flat-button color=primary [routerLink]="['/dashboard']">
+  <mat-icon>arrow_back</mat-icon>
+</a>
+<h1>{{ convertTxType() }} {{ skuName }}</h1>
+<form [formGroup]="txForm" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <input matInput placeholder="Client" [formControl]="txForm.controls['client']" />
+    <mat-error *ngIf="hasError('client', 'required')">Client is required</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Quantity" [formControl]="txForm.controls['quantity']" />
+    <mat-error *ngIf="hasError('quantity', 'required')">Quantity is required</mat-error>
+    <mat-error *ngIf="hasError('quantity', 'min')">Quantity must be 0 or more.</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Purchase/Sales Cost" [formControl]="txForm.controls['total_cost']" />
+    <mat-error *ngIf="hasError('total_cost', 'required')">Cost is required</mat-error>
+    <mat-error *ngIf="hasError('total_cost', 'min')">Cost must be 0 or more.</mat-error>
+  </mat-form-field>
+  <button mat-flat-button color=accent>
+    <mat-icon>done</mat-icon>
+  </button>
+</form>

@@ -1,13 +1,26 @@
-<mat-grid-list cols="4" rowHeight="100px">
+<mat-grid-list cols="4" rowHeight="10em">
   <mat-grid-tile *ngFor="let sku of skus | async">
     <mat-card class="sku-card">
       <mat-card-title>{{ sku.name }}</mat-card-title>
-      <mat-card-content>{{ sku.description }}</mat-card-content>
+      <mat-card-content>
+        <p>
+          {{ sku.description }}
+        </p>
+        <p>
+          {{ sku.current_quantity }} {{ sku.base_units }} remaining
+        </p>
+      </mat-card-content>
       <mat-card-actions>
-        <a mat-button color=accent>Receive</a>
-        <a mat-button color=accent>Ship</a>
+        <a mat-flat-button color=accent
+          [routerLink]="['/transaction']"
+          [queryParams]="{ txType: txType.PURCHASED }"
+          >Receive</a>
+        <a mat-flat-button color=accent
+          [routerLink]="['/transaction']"
+          [queryParams]="{ txType: txType.SOLD }"
+          >Ship</a>
       </mat-card-actions>
-      <mat-card-footer>{{ sku.current_quantity }} {{ sku.base_units }} remaining</mat-card-footer>
+      <mat-card-footer></mat-card-footer>
     </mat-card>
   </mat-grid-tile>
 </mat-grid-list>

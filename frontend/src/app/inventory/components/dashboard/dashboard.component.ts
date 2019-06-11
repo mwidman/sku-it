@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import * as fromInventory from '../../reducers';
 import { FetchSkus } from '../../actions/sku.actions';
 import { Sku } from '../../models/sku';
+import { TxType } from '../../models/transaction';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,6 +14,8 @@ import { Sku } from '../../models/sku';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+
+  txType = TxType;
 
   skus: Observable<Sku[]>;
 
