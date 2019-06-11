@@ -1,15 +1,20 @@
-<form [formGroup]="skuForm">
+<form [formGroup]="skuForm" (ngSubmit)="onSubmit()">
   <mat-form-field>
     <input matInput placeholder="Sku name" [formControl]="skuForm.controls['name']" />
+    <mat-error *ngIf="hasError('name', 'required')">Name is required</mat-error>
   </mat-form-field>
   <mat-form-field>
     <input matInput placeholder="Description" [formControl]="skuForm.controls['description']" />
+    <mat-error *ngIf="hasError('description', 'required')">Description is required</mat-error>
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="Units" [formControl]="skuForm.controls['baseUnits']" />
+    <input matInput placeholder="Units" [formControl]="skuForm.controls['base_units']" />
+    <mat-error *ngIf="hasError('base_units', 'required')">Units is required</mat-error>
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="Curent Quantity" [formControl]="skuForm.controls['currentQuantity']" />
+    <input matInput placeholder="Curent Quantity" [formControl]="skuForm.controls['current_quantity']" />
+    <mat-error *ngIf="hasError('current_quantity', 'required')">Quantity is required</mat-error>
+    <mat-error *ngIf="hasError('current_quantity', 'min')">Quantity must be 0 or more.</mat-error>
   </mat-form-field>
   <button mat-flat-button color=accent>
     <mat-icon>done</mat-icon>
