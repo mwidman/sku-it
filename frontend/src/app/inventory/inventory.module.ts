@@ -1,19 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { SkuAddComponent } from './components/sku-add/sku-add.component';
 import { SkuInComponent } from './components/sku-in/sku-in.component';
 import { SkuOutComponent } from './components/sku-out/sku-out.component';
-import { StoreModule } from '@ngrx/store';
-
 import { reducers } from './reducers';
 import { SkuEffects } from './effects';
-import { EffectsModule } from '@ngrx/effects';
 import { MaterialModule } from '../material.module';
 
 export const COMPONENTS = [
   DashboardComponent,
+  SkuAddComponent,
   SkuInComponent,
-  SkuOutComponent
+  SkuOutComponent,
 ];
 
 @NgModule({
@@ -22,6 +25,8 @@ export const COMPONENTS = [
     CommonModule,
     StoreModule.forFeature('inventory', reducers),
     EffectsModule.forFeature([SkuEffects]),
+    FormsModule,
+    ReactiveFormsModule,
     MaterialModule,
   ],
   exports: COMPONENTS,

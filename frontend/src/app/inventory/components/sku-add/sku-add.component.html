@@ -1,0 +1,17 @@
+<form [formGroup]="skuForm">
+  <mat-form-field>
+    <input matInput placeholder="Sku name" [formControl]="skuForm.controls['name']" />
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Description" [formControl]="skuForm.controls['description']" />
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Units" [formControl]="skuForm.controls['baseUnits']" />
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Curent Quantity" [formControl]="skuForm.controls['currentQuantity']" />
+  </mat-form-field>
+  <button mat-flat-button color=accent>
+    <mat-icon>done</mat-icon>
+  </button>
+</form>
