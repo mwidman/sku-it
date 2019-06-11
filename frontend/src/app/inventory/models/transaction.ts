@@ -4,7 +4,8 @@ export enum TxType {
 }
 
 export interface Transaction {
-  sku_name: string;
+  id: string;
+  sku_id: string;
   tx_type: TxType;
   quantity: number;
   total_cost: number;

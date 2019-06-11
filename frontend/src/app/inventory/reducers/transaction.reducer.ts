@@ -1,22 +1,22 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
-import { Sku } from '../models/sku';
-import { SkuActions } from '../actions/sku.actions';
+import { Transaction } from '../models/transaction';
+import { TransactionActions } from '../actions/transaction.actions';
 
-export interface SkuState extends EntityState<Sku> {
-  selectedSkuId: string | null;
+export interface TransactionState extends EntityState<Transaction> {
+  selectedTransactionId: string | null;
   fetching: boolean;
   fetchError: string;
   adding: boolean;
   addError: string;
 }
 
-export const adapter: EntityAdapter<Sku> = createEntityAdapter<Sku>({
-  selectId: (sku: Sku) => sku.id,
+export const adapter: EntityAdapter<Transaction> = createEntityAdapter<Transaction>({
+  selectId: (transaction: Transaction) => transaction.id,
   sortComparer: false,
 });
 
-export const initialState: SkuState = adapter.getInitialState({
-  selectedSkuId: null,
+export const initialState: TransactionState = adapter.getInitialState({
+  selectedTransactionId: null,
   fetching: false,
   fetchError: '',
   adding: false,
@@ -27,16 +27,16 @@ export const initialState: SkuState = adapter.getInitialState({
 export function reducer(
   state = initialState,
   action
-): SkuState {
+): TransactionState {
   switch (action.type) {
-    case SkuActions.FETCH_SKUS: {
+    case TransactionActions.FETCH_TRANSACTIONS: {
       return {
         ...state,
         fetching: true,
         fetchError: '',
       };
     }
-    case SkuActions.FETCH_SKUS_SUCCESS: {
+    case TransactionActions.FETCH_TRANSACTIONS_SUCCESS: {
       return adapter.addAll(
         action.payload,
         {
@@ -45,21 +45,21 @@ export function reducer(
         }
       );
     }
-    case SkuActions.FETCH_SKUS_FAILURE: {
+    case TransactionActions.FETCH_TRANSACTIONS_FAILURE: {
       return {
         ...state,
         fetching: false,
         fetchError: action.payload
       };
     }
-    case SkuActions.ADD_SKU: {
+    case TransactionActions.ADD_TRANSACTION: {
       return {
         ...state,
         adding: true,
         addError: '',
       };
     }
-    case SkuActions.ADD_SKU_SUCCESS: {
+    case TransactionActions.ADD_TRANSACTION_SUCCESS: {
       return adapter.addOne(
         action.payload,
         {
@@ -67,17 +67,17 @@ export function reducer(
           adding: false,
       });
     }
-    case SkuActions.ADD_SKU_SUCCESS: {
+    case TransactionActions.ADD_TRANSACTION_SUCCESS: {
       return {
         ...state,
         adding: false,
         addError: action.payload
       };
     }
-    case SkuActions.SELECT_SKU: {
+    case TransactionActions.SELECT_TRANSACTION: {
       return {
         ...state,
-        selectedSkuId: action.payload
+        selectedTransactionId: action.payload
       };
     }
     default: {
@@ -86,4 +86,4 @@ export function reducer(
   }
 }
 
-export const getSelectedId = (state: SkuState) => state.selectedSkuId;
+export const getSelectedId = (state: TransactionState) => state.selectedTransactionId;
