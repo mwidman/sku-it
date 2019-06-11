@@ -1,7 +1,7 @@
 <a mat-flat-button color=primary [routerLink]="['/dashboard']">
   <mat-icon>arrow_back</mat-icon>
 </a>
-<h1>{{ convertTxType() }} {{ (sku$ | async).name }}</h1>
+<h1>{{ convertTxType() }} {{ (sku$ | async)?.name }}</h1>
 <form [formGroup]="txForm" (ngSubmit)="onSubmit()">
   <mat-form-field>
     <input matInput placeholder="Client" [formControl]="txForm.controls['client']" />

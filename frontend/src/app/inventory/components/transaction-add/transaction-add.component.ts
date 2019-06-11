@@ -16,10 +16,9 @@ import { Sku } from '../../models/sku';
 export class TransactionAddComponent implements OnInit {
 
   txForm: FormGroup = new FormGroup({
-    sku_name: new FormControl('', [Validators.required]),
     client: new FormControl('', [Validators.required]),
-    quantity: new FormControl('', [Validators.required, Validators.maxLength(24)]),
-    total_cost: new FormControl(0, [Validators.min(0)]),
+    quantity: new FormControl('', [Validators.required, Validators.min(0)]),
+    total_cost: new FormControl('', [Validators.min(0)]),
   });
 
   txType: string;
