@@ -1,5 +1,9 @@
 <mat-card *ngFor="let sku of skus | async">
   <mat-card-title>{{ sku.name }}</mat-card-title>
   <mat-card-content>{{ sku.description }}</mat-card-content>
+  <mat-card-actions>
+    <a mat-button>Receive</a>
+    <a mat-button>Ship</a>
+  </mat-card-actions>
   <mat-card-footer>{{ sku.current_quantity }} {{ sku.base_units }} remaining</mat-card-footer>
 </mat-card>
