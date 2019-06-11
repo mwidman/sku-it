@@ -1,21 +1,24 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { asyncScheduler, of, } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, map, catchError } from 'rxjs/operators';
 
 import { Sku } from '../models/sku';
 import { 
   SkuActions,
   FetchSkusSuccess,
   AddSkuSuccess,
-  AddSku
+  AddSku,
+  FetchSkusFailure
 } from '../actions/sku.actions';
+import { SkuService } from '../services/sku.service';
 
 @Injectable()
 export class SkuEffects {
 
   constructor(
-    private actions$: Actions
+    private actions$: Actions,
+    private skuService: SkuService,
   ) { }
 
   fetchSkus$ = createEffect(
@@ -23,12 +26,12 @@ export class SkuEffects {
       this.actions$.pipe(
         ofType(SkuActions.FETCH_SKUS),
         switchMap(() => {
-          const skus = [
-            { id: '1', name: 'Sku1', description: 'Sku 1', base_units: 'each', current_quantity: 0 },
-            { id: '2', name: 'Sku2', description: 'Sku 2', base_units: 'each', current_quantity: 0 },
-            { id: '3', name: 'Sku3', description: 'Sku 3', base_units: 'each', current_quantity: 0 },
-          ];
-          return of(new FetchSkusSuccess(skus));
+          return this.skuService.fetchSkus().pipe(
+            map((skus) => new FetchSkusSuccess(skus)),
+            catchError((error) => {
+              return of(new FetchSkusFailure(error))
+            })
+          );
         })
       )
   )
