@@ -1,10 +1,10 @@
-import { createFeatureSelector, combineReducers, Action, } from '@ngrx/store';
+import { createFeatureSelector, combineReducers, Action, createSelector, } from '@ngrx/store';
 
 import * as fromSku from './sku.reducer';
 import * as fromRoot from '../../reducers';
 
 export interface InventoryState {
-  skus: fromSku.State;
+  skus: fromSku.SkuState;
 }
 
 export interface State extends fromRoot.AppState {
@@ -18,3 +18,15 @@ export function reducers(state: InventoryState | undefined, action: Action) {
 }
 
 export const getSkuState = createFeatureSelector<State, InventoryState>('inventory');
+
+export const getSkuEntitiesState = createSelector(
+  getSkuState,
+  state => state.skus
+);
+
+export const {
+  selectAll: getAllSkus,
+  selectEntities: getSkuEntities,
+  selectIds: getSkuIds,
+  selectTotal: getTotalSkus,
+} = fromSku.adapter.getSelectors(getSkuEntitiesState);

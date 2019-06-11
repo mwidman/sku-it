@@ -3,7 +3,7 @@ import { createReducer, on } from '@ngrx/store';
 import { Sku } from '../models/sku';
 import { SkuActions } from '../actions/sku.actions';
 
-export interface State extends EntityState<Sku> {
+export interface SkuState extends EntityState<Sku> {
   selectedSkuId: string | null;
   loading: boolean;
   error: string;
@@ -14,7 +14,7 @@ export const adapter: EntityAdapter<Sku> = createEntityAdapter<Sku>({
   sortComparer: false,
 });
 
-export const initialState: State = adapter.getInitialState({
+export const initialState: SkuState = adapter.getInitialState({
   selectedSkuId: null,
   loading: false,
   error: '',
@@ -24,7 +24,7 @@ export const initialState: State = adapter.getInitialState({
 export function reducer(
   state = initialState,
   action
-): State {
+): SkuState {
   switch (action.type) {
     case SkuActions.FETCH_SKUS: {
       return {
@@ -54,4 +54,4 @@ export function reducer(
   }
 }
 
-export const getSelectedId = (state: State) => state.selectedSkuId;
+export const getSelectedId = (state: SkuState) => state.selectedSkuId;

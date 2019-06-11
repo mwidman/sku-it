@@ -3,9 +3,9 @@ import { Action } from '@ngrx/store';
 import { Sku } from '../models/sku';
 
 export enum SkuActions {
-  FETCH_SKUS = '[Skus] Load Skus',
-  FETCH_SKUS_SUCCESS = '[Skus] Load Skus Success',
-  FETCH_SKUS_FAILURE = '[Skus] Load Skus Failure',
+  FETCH_SKUS = '[Skus] Fetch Skus',
+  FETCH_SKUS_SUCCESS = '[Skus] Fetch Skus Success',
+  FETCH_SKUS_FAILURE = '[Skus] Fetch Skus Failure',
 };
 
 export class FetchSkus implements Action {
@@ -26,7 +26,7 @@ export class FetchSkusFailure implements Action {
   constructor(public payload: any) { }
 }
 
-export type SkuActionType
+export type SkuActionTypes
   = FetchSkus
   | FetchSkusSuccess
   | FetchSkusFailure

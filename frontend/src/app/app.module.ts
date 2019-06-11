@@ -19,6 +19,7 @@ import { environment } from '../environments/environment';
     AppRoutingModule,
     InventoryModule,
     StoreModule.forRoot(reducers, { metaReducers }),
+    EffectsModule.forRoot([]),
     !environment.production ? StoreDevtoolsModule.instrument({
       name: 'Sku-It App'
     }) : [],
