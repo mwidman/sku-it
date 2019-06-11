@@ -11,6 +11,7 @@
     <input matInput placeholder="Quantity" [formControl]="txForm.controls['quantity']" />
     <mat-error *ngIf="hasError('quantity', 'required')">Quantity is required</mat-error>
     <mat-error *ngIf="hasError('quantity', 'min')">Quantity must be 0 or more.</mat-error>
+    <mat-error *ngIf="hasError('quantity', 'negativeQuantity')">This quantity results in negative inventory.</mat-error>
   </mat-form-field>
   <mat-form-field>
     <input matInput placeholder="Shipping/Receiving Cost" [formControl]="txForm.controls['total_cost']" />
