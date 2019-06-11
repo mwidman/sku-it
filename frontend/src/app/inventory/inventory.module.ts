@@ -7,8 +7,7 @@ import { RouterModule } from '@angular/router';
 
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SkuAddComponent } from './components/sku-add/sku-add.component';
-import { SkuInComponent } from './components/sku-in/sku-in.component';
-import { SkuOutComponent } from './components/sku-out/sku-out.component';
+import { TransactionAddComponent } from './components/transaction-add/transaction-add.component';
 import { reducers } from './reducers';
 import { SkuEffects } from './effects';
 import { MaterialModule } from '../material.module';
@@ -16,8 +15,7 @@ import { MaterialModule } from '../material.module';
 export const COMPONENTS = [
   DashboardComponent,
   SkuAddComponent,
-  SkuInComponent,
-  SkuOutComponent,
+  TransactionAddComponent,
 ];
 
 @NgModule({

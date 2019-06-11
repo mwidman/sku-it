@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SkuInComponent } from './sku-in.component';
+import { TransactionAddComponent } from './transaction-add.component';
 
-describe('SkuInComponent', () => {
-  let component: SkuInComponent;
-  let fixture: ComponentFixture<SkuInComponent>;
+describe('TransactionAddComponent', () => {
+  let component: TransactionAddComponent;
+  let fixture: ComponentFixture<TransactionAddComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SkuInComponent ]
+      declarations: [ TransactionAddComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SkuInComponent);
+    fixture = TestBed.createComponent(TransactionAddComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
