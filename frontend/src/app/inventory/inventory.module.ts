@@ -8,6 +8,7 @@ import { StoreModule } from '@ngrx/store';
 import { reducers } from './reducers';
 import { SkuEffects } from './effects';
 import { EffectsModule } from '@ngrx/effects';
+import { MaterialModule } from '../material.module';
 
 export const COMPONENTS = [
   DashboardComponent,
@@ -20,7 +21,8 @@ export const COMPONENTS = [
   imports: [
     CommonModule,
     StoreModule.forFeature('inventory', reducers),
-    EffectsModule.forFeature([SkuEffects])
+    EffectsModule.forFeature([SkuEffects]),
+    MaterialModule,
   ],
   exports: COMPONENTS,
 })
