@@ -19,7 +19,7 @@
     <mat-error *ngIf="hasError('current_quantity', 'required')">Quantity is required</mat-error>
     <mat-error *ngIf="hasError('current_quantity', 'min')">Quantity must be 0 or more.</mat-error>
   </mat-form-field>
-  <button mat-flat-button color=accent>
+  <button mat-flat-button color=accent [disabled]="!skuForm.valid">
     <mat-icon>done</mat-icon>
   </button>
 </form>

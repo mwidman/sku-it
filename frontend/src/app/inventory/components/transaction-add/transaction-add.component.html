@@ -17,7 +17,7 @@
     <mat-error *ngIf="hasError('total_cost', 'required')">Cost is required</mat-error>
     <mat-error *ngIf="hasError('total_cost', 'min')">Cost must be 0 or more.</mat-error>
   </mat-form-field>
-  <button mat-flat-button color=accent>
+  <button mat-flat-button color=accent [disabled]="!txForm.valid">
     <mat-icon>done</mat-icon>
   </button>
 </form>
