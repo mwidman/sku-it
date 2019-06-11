@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SkuAddComponent } from './components/sku-add/sku-add.component';
@@ -27,6 +28,7 @@ export const COMPONENTS = [
     EffectsModule.forFeature([SkuEffects]),
     FormsModule,
     ReactiveFormsModule,
+    RouterModule,
     MaterialModule,
   ],
   exports: COMPONENTS,

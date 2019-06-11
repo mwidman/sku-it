@@ -1,3 +1,6 @@
+<a mat-flat-button color=primary [routerLink]="['/dashboard']">
+  <mat-icon>arrow_back</mat-icon>
+</a>
 <form [formGroup]="skuForm" (ngSubmit)="onSubmit()">
   <mat-form-field>
     <input matInput placeholder="Sku name" [formControl]="skuForm.controls['name']" />

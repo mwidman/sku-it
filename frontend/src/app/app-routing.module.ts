@@ -4,7 +4,7 @@ import { DashboardComponent } from './inventory/components/dashboard/dashboard.c
 import { SkuAddComponent } from './inventory/components/sku-add/sku-add.component';
 
 const routes: Routes = [
-  { path: '', component: DashboardComponent },
+  { path: 'dashboard', component: DashboardComponent },
   { path: 'add', component: SkuAddComponent },
 ];
 
