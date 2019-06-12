@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Sku, Transaction
+
+admin.site.register(Sku)
+admin.site.register(Transaction)
