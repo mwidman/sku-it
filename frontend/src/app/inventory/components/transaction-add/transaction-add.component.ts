@@ -24,6 +24,8 @@ export class TransactionAddComponent implements OnInit, OnDestroy {
   });
   txType: string;
   sku$: Observable<Sku>;
+  errors$: Observable<object>;
+
   private formSub: Subscription;
 
   constructor(
@@ -35,6 +37,9 @@ export class TransactionAddComponent implements OnInit, OnDestroy {
     this.txType = this.route.snapshot.queryParamMap.get("txType");
     this.sku$ = this.store.pipe(
       select(fromInventory.getSelectedSku)
+    );
+    this.errors$ = this.store.pipe(
+      select(fromInventory.getSkuAddErrors)
     );
   }
 
