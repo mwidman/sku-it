@@ -13,10 +13,14 @@
       <mat-card-actions>
         <button mat-flat-button color=accent
           (click)="openTransactionAdd(sku.id, txType.PURCHASED)"
-          >Receive</button>
+          >
+          <mat-icon>call_received</mat-icon>
+        </button>
         <button mat-flat-button color=accent
           (click)="openTransactionAdd(sku.id, txType.SOLD)"
-          >Ship</button>
+        >
+          <mat-icon>call_made</mat-icon>
+        </button>
       </mat-card-actions>
       <mat-card-footer></mat-card-footer>
     </mat-card>
