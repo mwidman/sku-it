@@ -2,7 +2,6 @@ import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { asyncScheduler, of, } from 'rxjs';
 import { switchMap, map, catchError } from 'rxjs/operators';
-import { isString, isObject } from 'util';
 
 import { Sku } from '../models/sku';
 import { 
@@ -14,6 +13,7 @@ import {
   AddSkuFailure
 } from '../actions/sku.actions';
 import { SkuService } from '../services/sku.service';
+import { convertError } from './utils';
 
 @Injectable()
 export class SkuEffects {
@@ -31,7 +31,8 @@ export class SkuEffects {
           return this.skuService.fetchSkus().pipe(
             map((skus) => new FetchSkusSuccess(skus)),
             catchError((error) => {
-              return of(new FetchSkusFailure(error));
+              const errors = convertError(error);
+              return of(new FetchSkusFailure(errors));
             })
           );
         })
@@ -53,29 +54,5 @@ export class SkuEffects {
         })
       )
   )
-
-}
-
-const convertError = (error: any): object => { 
-  if(error.error) {
-    if(isString(error.error)) {
-      return { error: error.error};
-    }
-    else if(isObject(error.error)) {
-      return error.error;
-    }
-  }
-  else if(error.status) {
-    switch(error.status) {
-      case 400: return { error: 'The was a problem with your request (invalid value, etc.).' };
-      case 404: return { error: 'Could not find the resource you were looking for.' };
-      case 500: return { error: 'An unknown server error occurred.' };
-      default: return { error: 'Uknown error occured' };
-    }
-  }
-  else {
-    return { error: 'Uknown error occured' };
-  }
-
 
 }
