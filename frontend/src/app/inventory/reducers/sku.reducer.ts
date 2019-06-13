@@ -5,9 +5,9 @@ import { SkuActions } from '../actions/sku.actions';
 export interface SkuState extends EntityState<Sku> {
   selectedSkuId: string | null;
   fetching: boolean;
-  fetchError: string;
+  fetchErrors: object;
   adding: boolean;
-  addError: string;
+  addErrors: object;
 }
 
 export const adapter: EntityAdapter<Sku> = createEntityAdapter<Sku>({
@@ -18,9 +18,9 @@ export const adapter: EntityAdapter<Sku> = createEntityAdapter<Sku>({
 export const initialState: SkuState = adapter.getInitialState({
   selectedSkuId: null,
   fetching: false,
-  fetchError: '',
+  fetchErrors: null,
   adding: false,
-  addError: '',
+  addErrors: null,
 });
 
 
@@ -33,7 +33,7 @@ export function reducer(
       return {
         ...state,
         fetching: true,
-        fetchError: '',
+        fetchErrors: null,
       };
     }
     case SkuActions.FETCH_SKUS_SUCCESS: {
@@ -49,14 +49,14 @@ export function reducer(
       return {
         ...state,
         fetching: false,
-        fetchError: action.payload
+        fetchErrors: action.payload
       };
     }
     case SkuActions.ADD_SKU: {
       return {
         ...state,
         adding: true,
-        addError: '',
+        addErrors: null,
       };
     }
     case SkuActions.ADD_SKU_SUCCESS: {
@@ -71,7 +71,7 @@ export function reducer(
       return {
         ...state,
         adding: false,
-        addError: action.payload
+        addErrors: action.payload
       };
     }
     case SkuActions.SELECT_SKU: {
@@ -87,3 +87,7 @@ export function reducer(
 }
 
 export const getSelectedId = (state: SkuState) => state.selectedSkuId;
+export const getFetching = (state: SkuState) => state.fetching;
+export const getFetchErrors = (state: SkuState) => state.fetchErrors;
+export const getAdding = (state: SkuState) => state.adding;
+export const getAddErrors = (state: SkuState) => state.addErrors;

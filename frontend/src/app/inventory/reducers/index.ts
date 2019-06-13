@@ -46,6 +46,26 @@ export const getSelectedSku = createSelector(
   getSelectedSkuId,
   (entities, id) => entities[id]
 );
+
+export const getSkuFetching = createSelector(
+  getSkuEntitiesState,
+  fromSku.getFetching,
+);
+
+export const getSkuFetchErrors = createSelector(
+  getSkuEntitiesState,
+  fromSku.getFetchErrors,
+);
+
+export const getSkuAdding = createSelector(
+  getSkuEntitiesState,
+  fromSku.getAdding,
+);
+
+export const getSkuAddErrors = createSelector(
+  getSkuEntitiesState,
+  fromSku.getAddErrors,
+);
 /* End Sku Section  */
 
 /* Start Transaction Section  */

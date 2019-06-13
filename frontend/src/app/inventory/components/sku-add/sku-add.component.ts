@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 import * as fromInventory from '../../reducers';
 import { AddSku } from '../../actions/sku.actions';
@@ -19,9 +20,14 @@ export class SkuAddComponent implements OnInit {
     current_quantity: new FormControl(0, [Validators.min(0)]),
   });
 
+  errors$: Observable<object>;
+
   constructor(private store: Store<fromInventory.State>) { }
 
   ngOnInit() {
+    this.errors$ = this.store.pipe(
+      select(fromInventory.getSkuAddErrors)
+    );
   }
 
   onSubmit() {

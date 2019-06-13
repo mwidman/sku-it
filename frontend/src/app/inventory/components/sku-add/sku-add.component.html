@@ -23,3 +23,8 @@
     <mat-icon>done</mat-icon>
   </button>
 </form>
+<div *ngIf="errors$ | async">
+  <div *ngFor="let error of errors$ | async | keyvalue" class="error">
+    {{error.key}}: {{error.value}}
+  </div>
+</div>
