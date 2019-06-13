@@ -3,7 +3,7 @@ import { Transaction } from '../models/transaction';
 import { TransactionActions } from '../actions/transaction.actions';
 
 export interface TransactionState extends EntityState<Transaction> {
-  selectedTransactionId: string | null;
+  selectedTransactionId: number | null;
   fetching: boolean;
   fetchError: string;
   adding: boolean;

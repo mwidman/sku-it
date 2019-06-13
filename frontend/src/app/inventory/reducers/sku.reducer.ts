@@ -3,7 +3,7 @@ import { Sku } from '../models/sku';
 import { SkuActions } from '../actions/sku.actions';
 
 export interface SkuState extends EntityState<Sku> {
-  selectedSkuId: string | null;
+  selectedSkuId: number | null;
   fetching: boolean;
   fetchErrors: object;
   adding: boolean;
