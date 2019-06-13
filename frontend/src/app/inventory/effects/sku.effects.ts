@@ -9,7 +9,8 @@ import {
   FetchSkusSuccess,
   AddSkuSuccess,
   AddSku,
-  FetchSkusFailure
+  FetchSkusFailure,
+  AddSkuFailure
 } from '../actions/sku.actions';
 import { SkuService } from '../services/sku.service';
 
@@ -29,7 +30,7 @@ export class SkuEffects {
           return this.skuService.fetchSkus().pipe(
             map((skus) => new FetchSkusSuccess(skus)),
             catchError((error) => {
-              return of(new FetchSkusFailure(error))
+              return of(new FetchSkusFailure(error));
             })
           );
         })
@@ -41,9 +42,13 @@ export class SkuEffects {
       this.actions$.pipe(
         ofType<AddSku>(SkuActions.ADD_SKU),
         switchMap((action) => {
-          const sku = action.payload;
-          return of(new AddSkuSuccess(sku));
-          })
+          return this.skuService.addSku(action.payload).pipe(
+            map((sku) => new AddSkuSuccess(sku)),
+            catchError((error) => {
+              return of(new AddSkuFailure(error));
+            })
+          )
+        })
       )
   )
 

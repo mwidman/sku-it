@@ -67,7 +67,7 @@ export function reducer(
           adding: false,
       });
     }
-    case SkuActions.ADD_SKU_SUCCESS: {
+    case SkuActions.ADD_SKU_FAILURE: {
       return {
         ...state,
         adding: false,

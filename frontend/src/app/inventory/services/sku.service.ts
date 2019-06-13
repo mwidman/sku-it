@@ -9,7 +9,7 @@ import { Sku } from '../models/sku';
 })
 export class SkuService {
 
-  private API_PATH = 'http://192.168.99.100/inventory/api';
+  private API_PATH = '/api';
 
 
   constructor(
@@ -17,24 +17,14 @@ export class SkuService {
   ) { }
 
   fetchSkus(): Observable<Sku[]> {
-    /*
+    console.log("Fetching Skus");
     return this.http
-      .get<Sku[]>(`${this.API_PATH}/skus`)
-    */
-    const skus = [
-      { id: '1', name: 'Sku1', description: 'Sku 1', base_units: 'each', current_quantity: 0 },
-      { id: '2', name: 'Sku2', description: 'Sku 2', base_units: 'each', current_quantity: 0 },
-      { id: '3', name: 'Sku3', description: 'Sku 3', base_units: 'each', current_quantity: 0 },
-    ];
-    return of(skus);
+      .get<Sku[]>(`${this.API_PATH}/skus/`)
   }
 
   addSku(sku: Sku): Observable<Sku> {
-    /*
     return this.http
-      .post<Sku>(`${this.API_PATH}/skus`, { sku })
-    */
-    return of(sku);
+      .post<Sku>(`${this.API_PATH}/skus/`, sku)
   }
 
 }
