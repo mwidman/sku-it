@@ -6,7 +6,7 @@ import { SkuAddComponent } from './inventory/components/sku-add/sku-add.componen
 import { TransactionAddComponent } from './inventory/components/transaction-add/transaction-add.component';
 
 const routes: Routes = [
-  { path: 'dashboard', component: DashboardComponent },
+  { path: '', component: DashboardComponent },
   { path: 'add', component: SkuAddComponent },
   { path: 'transaction', component: TransactionAddComponent },
 ];
