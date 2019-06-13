@@ -9,7 +9,7 @@ import { Transaction, TxType } from '../models/transaction';
 })
 export class TransactionService {
 
-  private API_PATH = 'http://192.168.99.100/inventory/api';
+  private API_PATH = '/api';
 
 
   constructor(
@@ -17,24 +17,13 @@ export class TransactionService {
   ) { }
 
   fetchTransactions(): Observable<Transaction[]> {
-    /*
     return this.http
-      .get<Transaction[]>(`${this.API_PATH}/skus`)
-    */
-    const transactions = [
-      { id: '1', sku_id: '1', tx_type: TxType.PURCHASED, client: 'Bob', quantity: 1, tx_date: new Date() },
-      { id: '2', sku_id: '2', tx_type: TxType.SOLD, client: 'Dan', quantity: 2, tx_date: new Date()},
-      { id: '3', sku_id: '3', tx_type: TxType.PURCHASED, client: 'Guy', quantity: 3, tx_date: new Date()},
-    ];
-    return of(transactions);
+      .get<Transaction[]>(`${this.API_PATH}/transactions/`)
   }
 
-  addTransaction(sku: Transaction): Observable<Transaction> {
-    /*
+  addTransaction(tx: Transaction): Observable<Transaction> {
     return this.http
-      .post<Transaction>(`${this.API_PATH}/skus`, { sku })
-    */
-    return of(sku);
+      .post<Transaction>(`${this.API_PATH}/transactions/`, tx)
   }
 
 }

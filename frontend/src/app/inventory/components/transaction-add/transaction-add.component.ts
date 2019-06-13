@@ -19,7 +19,6 @@ export class TransactionAddComponent implements OnInit, OnDestroy {
 
   txForm: FormGroup = new FormGroup({
     client: new FormControl('', [Validators.required]),
-    //quantity: new FormControl('', [Validators.required, Validators.min(0)]),
     quantity: new FormControl('', [Validators.required, Validators.min(0)], (ctrl) => this.checkSkuQuantity(ctrl)),
     total_cost: new FormControl('', [Validators.min(0)]),
   });
@@ -45,7 +44,7 @@ export class TransactionAddComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     if(this.txForm.valid) {
-      const transaction = this.txForm.value;
+      const transaction = { ...this.txForm.value, tx_type: this.txType.toUpperCase() };
       console.warn(transaction);
       this.store.dispatch(new AddTransaction(transaction));
     }
