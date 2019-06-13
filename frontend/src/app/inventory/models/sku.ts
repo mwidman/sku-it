@@ -1,5 +1,5 @@
 export interface Sku {
-  id: string;
+  id: number;
   name: string;
   base_units: string;
   current_quantity: number;
