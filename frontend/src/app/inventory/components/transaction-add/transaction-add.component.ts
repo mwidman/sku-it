@@ -39,7 +39,7 @@ export class TransactionAddComponent implements OnInit, OnDestroy {
       select(fromInventory.getSelectedSku)
     );
     this.errors$ = this.store.pipe(
-      select(fromInventory.getSkuAddErrors)
+      select(fromInventory.getTransactionAddErrors)
     );
   }
 

@@ -91,4 +91,24 @@ export const getSelectedTransaction = createSelector(
   getSelectedTransactionId,
   (entities, id) => entities[id]
 );
+
+export const getTransactionFetching = createSelector(
+  getTransactionEntitiesState,
+  fromTransaction.getFetching,
+);
+
+export const getTransactionFetchErrors = createSelector(
+  getTransactionEntitiesState,
+  fromTransaction.getFetchErrors,
+);
+
+export const getTransactionAdding = createSelector(
+  getTransactionEntitiesState,
+  fromTransaction.getAdding,
+);
+
+export const getTransactionAddErrors = createSelector(
+  getTransactionEntitiesState,
+  fromTransaction.getAddErrors,
+);
 /* End Transaction Section  */

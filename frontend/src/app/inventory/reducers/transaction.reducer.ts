@@ -5,9 +5,9 @@ import { TransactionActions } from '../actions/transaction.actions';
 export interface TransactionState extends EntityState<Transaction> {
   selectedTransactionId: number | null;
   fetching: boolean;
-  fetchError: string;
+  fetchErrors: object;
   adding: boolean;
-  addError: string;
+  addErrors: object;
 }
 
 export const adapter: EntityAdapter<Transaction> = createEntityAdapter<Transaction>({
@@ -18,9 +18,9 @@ export const adapter: EntityAdapter<Transaction> = createEntityAdapter<Transacti
 export const initialState: TransactionState = adapter.getInitialState({
   selectedTransactionId: null,
   fetching: false,
-  fetchError: '',
+  fetchErrors: null,
   adding: false,
-  addError: '',
+  addErrors: null,
 });
 
 
@@ -33,7 +33,7 @@ export function reducer(
       return {
         ...state,
         fetching: true,
-        fetchError: '',
+        fetchErrors: null,
       };
     }
     case TransactionActions.FETCH_TRANSACTIONS_SUCCESS: {
@@ -49,14 +49,14 @@ export function reducer(
       return {
         ...state,
         fetching: false,
-        fetchError: action.payload
+        fetchErrors: action.payload
       };
     }
     case TransactionActions.ADD_TRANSACTION: {
       return {
         ...state,
         adding: true,
-        addError: '',
+        addErrors: null,
       };
     }
     case TransactionActions.ADD_TRANSACTION_SUCCESS: {
@@ -71,7 +71,7 @@ export function reducer(
       return {
         ...state,
         adding: false,
-        addError: action.payload
+        addErrors: action.payload
       };
     }
     case TransactionActions.SELECT_TRANSACTION: {
@@ -87,3 +87,7 @@ export function reducer(
 }
 
 export const getSelectedId = (state: TransactionState) => state.selectedTransactionId;
+export const getFetching = (state: TransactionState) => state.fetching;
+export const getFetchErrors = (state: TransactionState) => state.fetchErrors;
+export const getAdding = (state: TransactionState) => state.adding;
+export const getAddErrors = (state: TransactionState) => state.addErrors;
