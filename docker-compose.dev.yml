@@ -26,8 +26,9 @@ services:
       context: ./frontend
     volumes:
       - ./frontend:/code:ro
+    command: "npm start"
     ports:
-      - "8080:8080"
+      - "4200:4200"
     networks:
       - main
     depends_on:
@@ -41,6 +42,7 @@ services:
       - backend
     volumes:
       - ./nginx/dev.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/logs:/var/log/nginx/
     networks:
       - main
 networks:
