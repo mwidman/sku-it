@@ -6,7 +6,7 @@ from inventory.serializers import SkuSerializer, TransactionSerializer
 
 
 def index(request):
-    return HttpResponse("Hello world. You're at the inventory index.")
+    return HttpResponse("Please navigate to '/inventory/api/' to view the available API options.")
 
 
 class SkuViewSet(viewsets.ModelViewSet):
