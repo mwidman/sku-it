@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
@@ -9,22 +9,20 @@ import { Sku } from '../models/sku';
 })
 export class SkuService {
 
-  private API_PATH = '/api';
-
-
   constructor(
+    @Inject('BASE_API_URL') private baseUrl: string,
     private http: HttpClient
   ) { }
 
   fetchSkus(): Observable<Sku[]> {
     console.log("Fetching Skus");
     return this.http
-      .get<Sku[]>(`${this.API_PATH}/skus/`)
+      .get<Sku[]>(`${this.baseUrl}/skus/`)
   }
 
   addSku(sku: Sku): Observable<Sku> {
     return this.http
-      .post<Sku>(`${this.API_PATH}/skus/`, sku)
+      .post<Sku>(`${this.baseUrl}/skus/`, sku)
   }
 
 }
