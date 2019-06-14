@@ -30,6 +30,9 @@ if [ "$PRODUCTION" == "true" ]; then
     # STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
     echo "==> Django setup, executing: collectstatic"
     python3 /code/manage.py collectstatic --noinput -v 3
+
+    echo "==> Running gunicorn"
+    gunicorn backend.wsgi -b 0.0.0.0:8000
 else
     # Django: reset database
     # https://docs.djangoproject.com/en/1.9/ref/django-admin/#flush
@@ -50,7 +53,9 @@ else
     # Django: collectstatic
     echo "==> Django setup, executing: collectstatic"
     python3 /code/manage.py collectstatic --noinput -v 3
+
+    # Just for test, use built-in webserver for now:
+    echo "==> Django setup, starting runserver"
+    python3 /code/manage.py runserver 0.0.0.0:8000
 fi
 
-# Just for test, use built-in webserver for now:
-python3 /code/manage.py runserver 0.0.0.0:8000

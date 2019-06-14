@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+  db:
+    container_name: db_server
+    image: postgres
+    env_file:
+      - ./config/production.env
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - main
+  backend:
+    container_name: django_server
+    build: ./backend
+    command: ["./scripts/start.sh"]
+    env_file:
+      - ./config/production.env
+    volumes:
+      - ./backend:/code
+      - django-static:/backend/static
+    depends_on:
+      - db
+    networks:
+      - main
+  nginx:
+    container_name: nginx_frontend
+    build:
+      context: .
+      dockerfile: nginx/Dockerfile
+    ports:
+      - "8000:80"
+    depends_on:
+      - backend
+    volumes:
+      - ./nginx/prod.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/logs:/var/log/nginx/
+      - django-static:/usr/src/app/static
+    networks:
+      - main
+networks:
+  main:
+    driver: bridge
+volumes:
+  db-data:
+  django-static:
