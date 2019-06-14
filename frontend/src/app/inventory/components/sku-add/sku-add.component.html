@@ -28,3 +28,10 @@
     {{error.key}}: {{error.value}}
   </div>
 </div>
+<mat-progress-spinner
+  *ngIf="adding$ | async"
+  class="example-margin"
+  color="primary"
+  mode="indeterminate"
+  >
+</mat-progress-spinner>

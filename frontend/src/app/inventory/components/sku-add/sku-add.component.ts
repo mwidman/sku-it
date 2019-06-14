@@ -1,17 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Store, select, ActionsSubject } from '@ngrx/store';
+import { Observable, Subscription } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
 import * as fromInventory from '../../reducers';
-import { AddSku } from '../../actions/sku.actions';
+import { AddSku, SkuActions, AddSkuSuccess } from '../../actions/sku.actions';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-sku-add',
   templateUrl: './sku-add.component.html',
   styleUrls: ['./sku-add.component.scss']
 })
-export class SkuAddComponent implements OnInit {
+export class SkuAddComponent implements OnInit, OnDestroy {
 
   skuForm: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -21,13 +23,34 @@ export class SkuAddComponent implements OnInit {
   });
 
   errors$: Observable<object>;
+  adding$: Observable<boolean>;
 
-  constructor(private store: Store<fromInventory.State>) { }
+  actionSubcription = new Subscription();
+
+  constructor(
+    private store: Store<fromInventory.State>,
+    private actionSubject: ActionsSubject,
+    private snackBar: MatSnackBar,
+    ) { }
 
   ngOnInit() {
     this.errors$ = this.store.pipe(
       select(fromInventory.getSkuAddErrors)
     );
+    this.adding$ = this.store.pipe(
+      select(fromInventory.getSkuAdding)
+    );
+    this.actionSubcription = this.actionSubject.pipe( 
+      filter(action => action.type == SkuActions.ADD_SKU_SUCCESS)
+    )
+    .subscribe((action) => {
+      const { name } = (<AddSkuSuccess>action).payload;
+      this.snackBar.open(`Sku ${name} created successfully`, '', { duration: 2000 })
+    })
+  }
+
+  ngOnDestroy() {
+    this.actionSubcription.unsubscribe();
   }
 
   onSubmit() {

@@ -9,9 +9,6 @@ import { Transaction, TxType } from '../models/transaction';
 })
 export class TransactionService {
 
-  private API_PATH = '/inventory/api';
-
-
   constructor(
     @Inject('BASE_API_URL') private baseUrl: string,
     private http: HttpClient
