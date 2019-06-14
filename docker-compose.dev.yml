@@ -6,6 +6,8 @@ services:
     image: postgres
     env_file:
       - ./config/development.env
+    volumes:
+      - db-data:/var/lib/postgresql/data
     networks:
       - main
   backend:
@@ -48,3 +50,5 @@ services:
 networks:
   main:
     driver: bridge
+volumes:
+  db-data:
