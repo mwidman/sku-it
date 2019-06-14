@@ -41,7 +41,7 @@ export function reducer(
         action.payload,
         {
           ...state,
-          loading: false
+          fetching: false
         }
       );
     }
