@@ -1,7 +1,7 @@
 Django>=1.11,<1.12
 django-cors-headers==3.0.2
 psycopg2>=2.7,<3.0
-djangorestframework==3.9.2
+djangorestframework==3.11.2
 django-filter>=1.0.1
 djangorestframework-simplejwt
 
